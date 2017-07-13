@@ -2,11 +2,7 @@ export default (editor, opt = {}) => {
   const c = opt;
   const dc = editor.DomComponents;
   const defaultType = dc.getType('default');
-  const textType = dc.getType('text');
   const defaultModel = defaultType.model;
-  const defaultView = defaultType.view;
-  const textModel = textType.model;
-  const textView = textType.view;
   const burgerType = 'burger-menu';
 
   dc.addType(burgerType, {
@@ -130,6 +126,6 @@ export default (editor, opt = {}) => {
         }
       },
     }),
-    view: defaultView,
+    view: defaultType.view,
   });
 }
