@@ -4,8 +4,8 @@ Simple navbar component for GrapesJS editor
 
 <p align="center"><img src="https://artf.github.io/grapesjs/img/navbar.gif" alt="GrapesJS" align="center"/></p>
 <br/>
-[Demo](http://grapesjs.com/demo.html)
-<br/>
+
+# [Demo](http://grapesjs.com/demo.html)
 
 
 ## Summary
