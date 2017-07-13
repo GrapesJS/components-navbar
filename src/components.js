@@ -7,7 +7,6 @@ export default (editor, opt = {}) => {
   const defaultView = defaultType.view;
   const textModel = textType.model;
   const textView = textType.view;
-  const burgerPfx = 'burger';
   const burgerType = 'burger-menu';
 
   dc.addType(burgerType, {
@@ -19,9 +18,6 @@ export default (editor, opt = {}) => {
         copyable: false,
         removable: false,
         script: function () {
-          var timer;
-          var toggled = false;
-          var time = 1000;
           var transEndAdded;
           var isAnimating = 0;
           var stringCollapse = 'gjs-collapse';
@@ -85,7 +81,7 @@ export default (editor, opt = {}) => {
               elStyle[transitProp] = 0;
             }
 
-            if(parseInt(elStyle[transitProp]) == 0) {
+            if (parseInt(elStyle[transitProp]) == 0) {
               elStyle[transitProp] = '0';
               setTimeout(function() {
                   elStyle[transitProp] = elMaxHeight + 'px';
