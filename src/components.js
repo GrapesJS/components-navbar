@@ -8,8 +8,9 @@ export default (editor, opt = {}) => {
   const textModel = textType.model;
   const textView = textType.view;
   const burgerPfx = 'burger';
+  const burgerType = 'burger-menu';
 
-  dc.addType('burger-menu', {
+  dc.addType(burgerType, {
     model: defaultModel.extend({
       defaults: Object.assign({}, defaultModel.prototype.defaults, {
         'custom-name': c.labelBurger,
@@ -25,8 +26,27 @@ export default (editor, opt = {}) => {
           var isAnimating = 0;
           var stringCollapse = 'gjs-collapse';
           var clickEvent = 'click';
-          var transitEndEvent = 'transitionend';
           var transitProp = 'max-height';
+          var transitTiming = 'ease-in-out';
+          var transitSpeed = 0.25;
+
+          var getTransitionEvent = function() {
+            var t, el = document.createElement('void');
+            var transitions = {
+              'transition': 'transitionend',
+              'OTransition': 'oTransitionEnd',
+              'MozTransition': 'transitionend',
+              'WebkitTransition': 'webkitTransitionEnd'
+            }
+
+            for (t in transitions) {
+              if (el.style[t] !== undefined){
+                return transitions[t];
+              }
+            }
+          }
+
+          var transitEndEvent = getTransitionEvent();
 
           var getElHeight = function(el) {
             var style = window.getComputedStyle(el);
@@ -34,8 +54,7 @@ export default (editor, opt = {}) => {
             var elPos = style.position;
             var elVis = style.visibility;
             var currentHeight = style.height;
-            var currentMaxHeight = style.maxHeight;
-            var elMaxHeight = style.maxHeight.replace('px', '').replace('%', '');
+            var elMaxHeight = parseInt(style[transitProp]);
 
             if (elDisplay !== 'none' && elMaxHeight !== '0') {
               return el.offsetHeight;
@@ -45,19 +64,11 @@ export default (editor, opt = {}) => {
             el.style.display = 'block';
             el.style.position = 'absolute';
             el.style.visibility = 'hidden';
-            //el.style.maxHeight = 'auto';
             var height = el.offsetHeight;
-            /*
-            el.style.height = currentHeight;
-            el.style.display = '';
-            el.style.position = elPos;
-            el.style.visibility = elVis;
-            */
             el.style.height = '';
             el.style.display = '';
             el.style.position = '';
             el.style.visibility = '';
-            //el.style.maxHeight = currentMaxHeight;
 
             return height;
           };
@@ -67,7 +78,7 @@ export default (editor, opt = {}) => {
             var elMaxHeight = getElHeight(el);
             var elStyle = el.style;
             elStyle.display = 'block';
-            elStyle.transition = transitProp + ' 0.25s ease-in-out';
+            elStyle.transition = transitProp + ' ' + transitSpeed + 's ' + transitTiming;
             elStyle.overflowY = 'hidden';
 
             if (elStyle[transitProp] == '') {
@@ -99,9 +110,9 @@ export default (editor, opt = {}) => {
               navItems.addEventListener(transitEndEvent, function() {
                 isAnimating = 0;
                 var itemsStyle = navItems.style;
-                if (parseInt(itemsStyle.maxHeight) == 0) {
+                if (parseInt(itemsStyle[transitProp]) == 0) {
                   itemsStyle.display = '';
-                  itemsStyle.maxHeight = '';
+                  itemsStyle[transitProp] = '';
                 }
               });
               transEndAdded = 1;
@@ -118,8 +129,8 @@ export default (editor, opt = {}) => {
     }, {
       isComponent(el) {
         if(el.getAttribute &&
-          el.getAttribute('data-gjs-type') == 'burger-menu') {
-          return {type: 'burger-menu'};
+          el.getAttribute('data-gjs-type') == burgerType) {
+          return {type: burgerType};
         }
       },
     }),
