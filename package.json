@@ -1,13 +1,17 @@
 {
   "name": "grapesjs-navbar",
-  "version": "0.0.5",
+  "version": "0.1.2",
   "description": "Simple navbar component for GrapesJS editor",
   "main": "dist/grapesjs-navbar.min.js",
   "scripts": {
     "lint": "eslint src",
-    "build": "WEBPACK_ENV=prod && npm run v:patch && webpack",
+    "build": "npm run v:patch && webpack --env.production",
     "v:patch": "npm version --no-git-tag-version patch",
-    "start": "WEBPACK_ENV=dev webpack-dev-server --progress --colors"
+    "start": "webpack-dev-server --open --progress --colors"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/artf/grapesjs-navbar.git"
   },
   "keywords": [
     "grapesjs",
@@ -17,14 +21,25 @@
   ],
   "author": "Artur Arseniev",
   "license": "BSD-3-Clause",
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": [
+      "transform-object-rest-spread"
+    ]
+  },
+  "peerDependencies": {
+    "grapesjs": "0.x"
+  },
   "devDependencies": {
-    "babel-core": "^6.25.0",
-    "babel-loader": "^7.0.0",
-    "babel-preset-es2015": "^6.24.1",
-    "grapesjs": "^0.9.5",
-    "jquery": "^3.2.1",
-    "node-sass": "^4.5.3",
-    "webpack": "^2.6.1",
-    "webpack-dev-server": "^2.4.5"
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "html-webpack-plugin": "^2.30.1",
+    "eslint": "^4.1.1",
+    "webpack": "^3.8.1",
+    "webpack-dev-server": "^2.9.4"
   }
 }
