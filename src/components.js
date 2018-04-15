@@ -7,7 +7,8 @@ export default (editor, opt = {}) => {
 
   dc.addType(burgerType, {
     model: defaultModel.extend({
-      defaults: Object.assign({}, defaultModel.prototype.defaults, {
+      defaults: {
+        ...defaultModel.prototype.defaults,
         'custom-name': c.labelBurger,
         draggable: false,
         droppable: false,
@@ -117,7 +118,7 @@ export default (editor, opt = {}) => {
 
           this[stringCollapse] = 1;
         },
-      }),
+      },
     }, {
       isComponent(el) {
         if(el.getAttribute &&
