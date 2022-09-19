@@ -1,13 +1,10 @@
+import type grapesjs from 'grapesjs';
 import loadBlocks from './blocks';
 import loadComponents from './components';
-import {
-  hNavbarRef
-} from './consts';
+import { hNavbarRef } from './consts';
 
-export default (editor, opts = {}) => {
-  let c = opts;
-
-  let defaults = {
+const plugin: grapesjs.Plugin = (editor, opts = {}) => {
+  const options = {
     blocks: [hNavbarRef],
     defaultStyle: 1,
     navbarClsPfx: 'navbar',
@@ -22,14 +19,11 @@ export default (editor, opts = {}) => {
     labelHome: 'Home',
     labelAbout: 'About',
     labelContact: 'Contact',
+    ...opts,
   };
 
-  // Load defaults
-  for (let name in defaults) {
-    if (!(name in c))
-      c[name] = defaults[name];
-  }
-
-  loadBlocks(editor, c);
-  loadComponents(editor, c);
+  loadBlocks(editor, options);
+  loadComponents(editor, options);
 };
+
+export default plugin;
