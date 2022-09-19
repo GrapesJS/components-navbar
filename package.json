@@ -1,6 +1,6 @@
 {
   "name": "grapesjs-navbar",
-  "version": "0.1.5",
+  "version": "1.0.0",
   "description": "Simple navbar component for GrapesJS editor",
   "main": "dist/index.js",
   "files": [
