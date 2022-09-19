@@ -1,15 +1,10 @@
-import {
-  hNavbarRef,
-  navbarRef,
-  navbarItemsRef,
-  menuRef
-} from './consts';
+import { navbarRef, navbarItemsRef, menuRef } from './consts';
 
-export default (editor, opt = {}) => {
-  const c = opt;
-  const bm = editor.BlockManager;
-  const navbarPfx = c.navbarClsPfx || 'navbar';
-  const style = c.defaultStyle ? `
+export default (editor, opts = {}) => {
+  const c = opts;
+  const { block, label, id } = opts;
+  const navbarPfx = opts.navbarClsPfx || 'navbar';
+  const style = opts.defaultStyle ? `
   <style>
     .${navbarPfx}-items-c {
       display: inline-block;
@@ -96,17 +91,14 @@ export default (editor, opt = {}) => {
   </style>
   ` : '';
 
-  if (c.blocks.indexOf(hNavbarRef) >= 0) {
-    bm.add(hNavbarRef, {
-      label: `
-        <svg class="gjs-block-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-          <path class="gjs-block-svg-path" d="M22,9 C22,8.4 21.5,8 20.75,8 L3.25,8 C2.5,8 2,8.4 2,9 L2,15 C2,15.6 2.5,16 3.25,16 L20.75,16 C21.5,16 22,15.6 22,15 L22,9 Z M21,15 L3,15 L3,9 L21,9 L21,15 Z" fill-rule="nonzero"></path>
-          <rect class="gjs-block-svg-path" x="15" y="10" width="5" height="1"></rect>
-          <rect class="gjs-block-svg-path" x="15" y="13" width="5" height="1"></rect>
-          <rect class="gjs-block-svg-path" x="15" y="11.5" width="5" height="1"></rect>
-        </svg>
-        <div class="gjs-block-label">${c.labelNavbarBlock}</div>`,
-      category: c.labelNavbarCategory,
+  if (block) {
+    editor.Blocks.add(id, {
+      media: `<svg viewBox="0 0 24 24">
+        <path d="M22 9c0-.6-.5-1-1.25-1H3.25C2.5 8 2 8.4 2 9v6c0 .6.5 1 1.25 1h17.5c.75 0 1.25-.4 1.25-1V9Zm-1 6H3V9h18v6Z"/><path d="M15 10h5v1h-5zM15 13h5v1h-5zM15 11.5h5v1h-5z"/>
+      </svg>`,
+      label,
+      category: 'Extra',
+      select: true,
       content: `
         <div class="${navbarPfx}" data-gjs-droppable="false" data-gjs-custom-name="${c.labelNavbar}" data-gjs="${navbarRef}">
           <div class="${navbarPfx}-container" data-gjs-droppable="false" data-gjs-draggable="false"
@@ -133,6 +125,7 @@ export default (editor, opt = {}) => {
         </div>
         ${style}
       `,
+      ...block,
     });
   }
 }
