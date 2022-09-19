@@ -1,11 +1,10 @@
-import grapesjs from 'grapesjs';
 import loadBlocks from './blocks';
 import loadComponents from './components';
 import {
   hNavbarRef
 } from './consts';
 
-export default grapesjs.plugins.add('gjs-navbar', (editor, opts = {}) => {
+export default (editor, opts = {}) => {
   let c = opts;
 
   let defaults = {
@@ -33,4 +32,4 @@ export default grapesjs.plugins.add('gjs-navbar', (editor, opts = {}) => {
 
   loadBlocks(editor, c);
   loadComponents(editor, c);
-});
+};

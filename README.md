@@ -7,6 +7,8 @@ Simple navbar component for GrapesJS editor
 
 # [Demo](http://grapesjs.com/demo.html)
 
+* Switch plugin name `gjs-navbar` -> `grapesjs-navbar`
+
 
 ## Summary
 
