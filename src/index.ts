@@ -1,7 +1,6 @@
 import type grapesjs from 'grapesjs';
 import loadBlocks from './blocks';
 import loadComponents from './components';
-import { hNavbarRef } from './consts';
 
 export type PluginOptions = {
   /**
