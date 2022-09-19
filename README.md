@@ -7,44 +7,45 @@ Simple navbar component for GrapesJS editor
 
 # [Demo](http://grapesjs.com/demo.html)
 
-* Switch plugin name `gjs-navbar` -> `grapesjs-navbar`
-
 
 ## Summary
 
-* Plugin name: `gjs-navbar`
-* Components: `burger-menu`
-* Blocks: `h-navbar`
+* Plugin name: `grapesjs-navbar`
+* Blocks: `navbar`
+* Components:
+  * `navbar`, `navbar-container`, `navbar-nav-menu`, `navbar-nav-menu-link`, `navbar-burger-menu`, `navbar-burger-menu-line`
 
 
 
 ## Options
 
-* `blocks` Which blocks to add, default: `['h-navbar']` (all),
-* `defaultStyle` Add default style to blocks, default: 1,
-* `navbarClsPfx` Navbar class prefix, default: 'navbar',
-* `labelNavbar` Navbar label, default: 'Navbar',
-* `labelNavbarContainer` Navbar container label, default: 'Navbar Container',
-* `labelMenu` Menu label, default: 'Navbar Menu',
-* `labelMenuLink` Menu link label, default: 'Menu link',
-* `labelBurger` Burger menu label, default: 'Burger',
-* `labelBurgerLine` Burger line label, default: 'Burger Line',
-* `labelNavbarBlock` Navbar Block label, default: 'Navbar',
-* `labelNavbarCategory` Navbar Block Category label, default: 'Extra',
-* `labelHome` Home label, default: 'Home',
-* `labelAbout` About label, default: 'About',
-* `labelContact` Contact label, default: 'Contact',
+| Option | Description | Default |
+|-|-|-
+| `id` | The ID used to create the block and component. | `navbar` |
+| `label` | The label used for the block and the component. | `Navbar` |
+| `block` | Object to extend the default block, eg. `{ category: 'Extra', ... }`. Pass a falsy value to avoid adding the block. | `{}` |
+| `style` | Custom CSS styles for the component. This will replace the default one. | `''` |
+| `styleAdditional` | Additional CSS styles for the component. These will be appended to the default one. | `''` |
+| `classPrefix` | Component class prefix. | `navbar` |
 
 
 
 ## Download
 
-* `npm i grapesjs-navbar`
+* CDN
+  * `https://unpkg.com/grapesjs-navbar`
+* NPM
+  * `npm i grapesjs-navbar`
+* GIT
+  * `git clone https://github.com/artf/grapesjs-navbar.git`
+
+
 
 
 
 ## Usage
 
+Directly in the browser
 ```html
 <link href="path/to/grapes.min.css" rel="stylesheet"/>
 <script src="path/to/grapes.min.js"></script>
@@ -55,13 +56,33 @@ Simple navbar component for GrapesJS editor
 <script type="text/javascript">
   var editor = grapesjs.init({
       container : '#gjs',
-      plugins: ['gjs-navbar'],
+      plugins: ['grapesjs-navbar'],
       pluginsOpts: {
-        'gjs-navbar': {/* ...options */}
+        'grapesjs-navbar': {/* ...options */}
       }
   });
 </script>
 ```
+
+Modern javascript
+```js
+import grapesjs from 'grapesjs';
+import plugin from 'grapesjs-navbar';
+
+const editor = grapesjs.init({
+  container : '#gjs',
+  // ...
+  plugins: [plugin],
+  pluginsOpts: {
+    [plugin]: { /* options */ }
+  }
+  // or
+  plugins: [
+    editor => plugin(editor, { /* options */ }),
+  ],
+});
+```
+
 
 
 
@@ -80,17 +101,18 @@ Install it
 $ npm i
 ```
 
-The plugin relies on GrapesJS via `peerDependencies` so you have to install it manually (without adding it to package.json)
-
-```sh
-$ npm i grapesjs --no-save
-```
-
 Start the dev server
 
 ```sh
 $ npm start
 ```
+
+Build before the commit. This will also increase the patch level version of the package
+
+```sh
+$ npm run build
+```
+
 
 
 

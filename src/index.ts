@@ -18,7 +18,7 @@ export type PluginOptions = {
   /**
    * Object to extend the default block. Pass a falsy value to avoid adding the block.
    * @example
-   * { label: 'Countdown', category: 'Extra', ... }
+   * { category: 'Extra', ... }
    */
   block?: Partial<grapesjs.BlockOptions>;
 
@@ -51,21 +51,6 @@ const plugin: grapesjs.Plugin = (editor, opts = {}) => {
     style: '',
     styleAdditional: '',
     classPrefix: 'navbar',
-
-    // blocks: [hNavbarRef],
-    // defaultStyle: 1,
-    // navbarClsPfx: 'navbar',
-    // labelNavbar: 'Navbar',
-    // labelNavbarContainer: 'Navbar Container',
-    // labelMenu: 'Navbar Menu',
-    // labelMenuLink: 'Menu link',
-    // labelBurger: 'Burger',
-    // labelBurgerLine: 'Burger Line',
-    // labelNavbarBlock: 'Navbar',
-    // labelNavbarCategory: 'Extra',
-    // labelHome: 'Home',
-    // labelAbout: 'About',
-    // labelContact: 'Contact',
     ...opts,
   };
 
