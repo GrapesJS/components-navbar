@@ -3,7 +3,7 @@ import { RequiredPluginOptions } from '.';
 
 export default (editor:  grapesjs.Editor, opts: RequiredPluginOptions) => {
   const { Components } = editor;
-  const { id } = opts;
+  const { id, label } = opts;
 
   const navbarPfx = opts.classPrefix;
   const idContainer = `${id}-container`;
@@ -16,7 +16,7 @@ export default (editor:  grapesjs.Editor, opts: RequiredPluginOptions) => {
     model: {
       defaults: {
         droppable: false,
-        name: 'Navbar',
+        name: label,
         attributes: { class: navbarPfx },
         components: { type: idContainer },
         styles: `
