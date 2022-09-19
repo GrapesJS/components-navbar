@@ -19,7 +19,7 @@ export default (editor:  grapesjs.Editor, opts: RequiredPluginOptions) => {
         name: label,
         attributes: { class: navbarPfx },
         components: { type: idContainer },
-        styles: `
+        styles: (opts.style || `
           .${navbarPfx} {
             background-color: #222;
             color: #ddd;
@@ -102,7 +102,7 @@ export default (editor:  grapesjs.Editor, opts: RequiredPluginOptions) => {
               display: block;
             }
           }
-        `,
+        `) + opts.styleAdditional,
       },
     }
   });

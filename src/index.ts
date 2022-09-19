@@ -29,6 +29,12 @@ export type PluginOptions = {
   style?: string,
 
   /**
+   * Additional CSS styles for the component. These will be appended to the default one.
+   * @default ''
+   */
+  styleAdditional?: string,
+
+  /**
    * Component class prefix.
    * @default 'navbar'
    */
@@ -43,6 +49,7 @@ const plugin: grapesjs.Plugin = (editor, opts = {}) => {
     label: 'Navbar',
     block: {},
     style: '',
+    styleAdditional: '',
     classPrefix: 'navbar',
 
     // blocks: [hNavbarRef],
