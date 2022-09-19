@@ -43,7 +43,7 @@ export type PluginOptions = {
 
 export type RequiredPluginOptions = Required<PluginOptions>;
 
-const plugin: grapesjs.Plugin = (editor, opts = {}) => {
+const plugin: grapesjs.Plugin<PluginOptions> = (editor, opts = {}) => {
   const options: RequiredPluginOptions = {
     id: 'navbar',
     label: 'Navbar',
