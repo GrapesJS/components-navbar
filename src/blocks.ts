@@ -1,8 +1,10 @@
-import { navbarRef, navbarItemsRef, menuRef } from './consts';
+import type grapesjs from 'grapesjs';
+import { RequiredPluginOptions } from '.';
 
-export default (editor, opts = {}) => {
-  const c = opts;
+export default (editor: grapesjs.Editor, opts: RequiredPluginOptions) => {
   const { block, label, id } = opts;
+
+  /*
   const navbarPfx = opts.navbarClsPfx || 'navbar';
   const style = opts.defaultStyle ? `
   <style>
@@ -90,6 +92,7 @@ export default (editor, opts = {}) => {
     }
   </style>
   ` : '';
+  */
 
   if (block) {
     editor.Blocks.add(id, {
@@ -99,6 +102,9 @@ export default (editor, opts = {}) => {
       label,
       category: 'Extra',
       select: true,
+      content: { type: id },
+      ...block,
+      /*
       content: `
         <div class="${navbarPfx}" data-gjs-droppable="false" data-gjs-custom-name="${c.labelNavbar}" data-gjs="${navbarRef}">
           <div class="${navbarPfx}-container" data-gjs-droppable="false" data-gjs-draggable="false"
@@ -125,7 +131,7 @@ export default (editor, opts = {}) => {
         </div>
         ${style}
       `,
-      ...block,
+      */
     });
   }
 }
