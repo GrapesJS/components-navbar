@@ -1,7 +1,7 @@
-import type grapesjs from 'grapesjs';
+import type { Editor } from 'grapesjs';
 import { RequiredPluginOptions } from '.';
 
-export default (editor:  grapesjs.Editor, opts: RequiredPluginOptions) => {
+export default (editor: Editor, opts: RequiredPluginOptions) => {
   const { Components } = editor;
   const { id, label } = opts;
 
