@@ -1,4 +1,4 @@
-import type grapesjs from 'grapesjs';
+import type { BlockProperties, Plugin } from 'grapesjs';
 import loadBlocks from './blocks';
 import loadComponents from './components';
 
@@ -20,7 +20,7 @@ export type PluginOptions = {
    * @example
    * { category: 'Extra', ... }
    */
-  block?: Partial<grapesjs.BlockOptions>;
+  block?: Partial<BlockProperties>;
 
   /**
    * Custom CSS styles for the component. This will replace the default one.
@@ -43,7 +43,7 @@ export type PluginOptions = {
 
 export type RequiredPluginOptions = Required<PluginOptions>;
 
-const plugin: grapesjs.Plugin<PluginOptions> = (editor, opts = {}) => {
+const plugin: Plugin<PluginOptions> = (editor, opts = {}) => {
   const options: RequiredPluginOptions = {
     id: 'navbar',
     label: 'Navbar',
