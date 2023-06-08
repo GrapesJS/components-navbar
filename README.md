@@ -2,7 +2,7 @@
 
 Simple navbar component for GrapesJS editor
 
-<p align="center"><img src="https://artf.github.io/grapesjs/img/navbar.gif" alt="GrapesJS" align="center"/></p>
+<p align="center"><img src="https://grapesjs.com/img/navbar.gif" alt="GrapesJS" align="center"/></p>
 <br/>
 
 # [Demo](http://grapesjs.com/demo.html)
@@ -37,7 +37,7 @@ Simple navbar component for GrapesJS editor
 * NPM
   * `npm i grapesjs-navbar`
 * GIT
-  * `git clone https://github.com/artf/grapesjs-navbar.git`
+  * `git clone https://github.com/GrapesJS/components-navbar.git.git`
 
 
 
@@ -91,7 +91,7 @@ const editor = grapesjs.init({
 Clone the repository
 
 ```sh
-$ git clone https://github.com/artf/grapesjs-navbar.git
+$ git clone https://github.com/GrapesJS/components-navbar.git.git
 $ cd grapesjs-navbar
 ```
 
