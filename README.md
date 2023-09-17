@@ -37,7 +37,7 @@ Simple navbar component for GrapesJS editor
 * NPM
   * `npm i grapesjs-navbar`
 * GIT
-  * `git clone https://github.com/GrapesJS/components-navbar.git.git`
+  * `git clone https://github.com/GrapesJS/components-navbar.git`
 
 
 
@@ -91,7 +91,7 @@ const editor = grapesjs.init({
 Clone the repository
 
 ```sh
-$ git clone https://github.com/GrapesJS/components-navbar.git.git
+$ git clone https://github.com/GrapesJS/components-navbar.git
 $ cd grapesjs-navbar
 ```
 
