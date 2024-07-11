@@ -9,6 +9,8 @@ export default (editor: Editor, opts: RequiredPluginOptions) => {
   const idContainer = `${id}-container`;
   const idNavMenu = `${id}-nav-menu`;
   const idNavMenuLink = `${id}-nav-menu-link`;
+  const idDropdownMenu = `${id}-dropdown-menu`;
+  const idDropdownMenuItem = `${id}-dropdown-menu-item`;
   const idBurgerMenu = `${id}-burger-menu`;
   const idBurgerMenuLine = `${id}-burger-menu-line`;
 
@@ -67,6 +69,30 @@ export default (editor: Editor, opts: RequiredPluginOptions) => {
             text-decoration: none;
             display: inline-block;
             padding: 10px 15px;
+            position: relative;
+          }
+
+          .${navbarPfx}-dropdown-menu {
+            display: none;
+            position: absolute;
+            background-color: #333;
+            min-width: 150px;
+            z-index: 1;
+          }
+
+          .${navbarPfx}-menu-link:hover .${navbarPfx}-dropdown-menu {
+            display: block;
+          }
+
+          .${navbarPfx}-dropdown-menu-item {
+            color: #ddd;
+            padding: 10px;
+            text-decoration: none;
+            display: block;
+          }
+
+          .${navbarPfx}-dropdown-menu-item:hover {
+            background-color: #444;
           }
 
           .${navbarPfx}-burger {
@@ -100,6 +126,10 @@ export default (editor: Editor, opts: RequiredPluginOptions) => {
 
             .${navbarPfx}-menu-link {
               display: block;
+            }
+
+            .${navbarPfx}-dropdown-menu {
+              position: static;
             }
           }
         `) + opts.styleAdditional,
@@ -141,6 +171,21 @@ export default (editor: Editor, opts: RequiredPluginOptions) => {
         components: [
           { type: idNavMenuLink, components: 'Home' },
           { type: idNavMenuLink, components: 'About' },
+          {
+            type: idNavMenuLink,
+            components: 'Services',
+            attributes: { class: `${navbarPfx}-menu-link` },
+            components: [
+              {
+                type: idDropdownMenu,
+                components: [
+                  { type: idDropdownMenuItem, components: 'Service 1' },
+                  { type: idDropdownMenuItem, components: 'Service 2' },
+                  { type: idDropdownMenuItem, components: 'Service 3' }
+                ]
+              }
+            ]
+          },
           { type: idNavMenuLink, components: 'Contact' },
         ]
       }
@@ -154,6 +199,29 @@ export default (editor: Editor, opts: RequiredPluginOptions) => {
         name: 'Menu link',
         draggable: `[data-gjs-type="${idNavMenu}"]`,
         attributes: { class: `${navbarPfx}-menu-link` },
+      }
+    }
+  });
+
+  Components.addType(idDropdownMenu, {
+    model: {
+      defaults: {
+        name: 'Dropdown Menu',
+        tagName: 'div',
+        attributes: { class: `${navbarPfx}-dropdown-menu` },
+        draggable: false,
+        droppable: false,
+      }
+    }
+  });
+
+  Components.addType(idDropdownMenuItem, {
+    extend: 'link',
+    model: {
+      defaults: {
+        name: 'Dropdown Menu Item',
+        draggable: `[data-gjs-type="${idDropdownMenu}"]`,
+        attributes: { class: `${navbarPfx}-dropdown-menu-item` },
       }
     }
   });
